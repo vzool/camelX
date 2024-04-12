@@ -13,21 +13,20 @@ from camel import Camel, CamelRegistry, PYTHON_TYPES
 
 # Round-trips for simple values of built-in types
 @pytest.mark.parametrize(('value', 'expected_serialization'), [
-    # TODO the trailing ... for non-container values is kinda weird
-    (None, "null\n...\n"),
-    ('ⓤⓝⓘⓒⓞⓓⓔ', "ⓤⓝⓘⓒⓞⓓⓔ\n...\n"),
+    (None, "null\n"),
+    ('ⓤⓝⓘⓒⓞⓓⓔ', "ⓤⓝⓘⓒⓞⓓⓔ\n"),
     (b'bytes', "!!binary |\n  Ynl0ZXM=\n"),
-    (True, "true\n...\n"),
-    (133, "133\n...\n"),
+    (True, "true\n"),
+    (133, "133\n"),
     # long, for python 2
-    (2**133, "10889035741470030830827987437816582766592\n...\n"),
-    (3.52, "3.52\n...\n"),
+    (2**133, "10889035741470030830827987437816582766592\n"),
+    (3.52, "3.52\n"),
     ([1, 2, 'three'], "- 1\n- 2\n- three\n"),
     ({'x': 7, 'y': 8, 'z': 9}, "x: 7\ny: 8\nz: 9\n"),
     # TODO this should use ? notation
     (set("qvx"), "!!set\nq: null\nv: null\nx: null\n"),
-    (datetime.date(2015, 10, 21), "2015-10-21\n...\n"),
-    (datetime.datetime(2015, 10, 21, 4, 29), "2015-10-21 04:29:00\n...\n"),
+    (datetime.date(2015, 10, 21), "2015-10-21\n"),
+    (datetime.datetime(2015, 10, 21, 4, 29), "2015-10-21 04:29:00\n"),
     # TODO case with timezone...  unfortunately can't preserve the whole thing
     (collections.OrderedDict([('a', 1), ('b', 2), ('c', 3)]), "!!omap\n- a: 1\n- b: 2\n- c: 3\n"),
 ])
@@ -61,8 +60,8 @@ def test_frozenset_roundtrip():
 # Round-trips for built-in Python types with custom representations
 @pytest.mark.parametrize(('value', 'expected_serialization'), [
     ((4, 3, 2), "!!python/tuple\n- 4\n- 3\n- 2\n"),
-    (5 + 12j, "!!python/complex 5+12j\n...\n"),
-    (2j, "!!python/complex 2j\n...\n"),
+    (5 + 12j, "!!python/complex 5+12j\n"),
+    (2j, "!!python/complex 2j\n"),
     (frozenset((4, 3, 2)), "!!python/frozenset\n- 2\n- 3\n- 4\n"),
 ])
 def test_python_roundtrip(value, expected_serialization):
@@ -106,7 +105,7 @@ def test_dieroll():
     value = DieRoll(3, 6)
     camel = Camel([reg])
     dumped = camel.dump(value)
-    assert dumped == '!roll 3d6\n...\n'
+    assert dumped == '!roll 3d6\n'
     assert camel.load(dumped) == value
 
 
