@@ -11,7 +11,7 @@ def test_docs_table_v1():
         def __repr__(self):
             return "<Table {self.size!r}>".format(self=self)
 
-    from camel import CamelRegistry
+    from camelx import CamelRegistry
     my_types = CamelRegistry()
 
     @my_types.dumper(Table, 'table', version=1)
@@ -24,7 +24,7 @@ def test_docs_table_v1():
     def _load_table(data, version):
         return Table(data["size"])
 
-    from camel import Camel
+    from camelx import Camel
     table = Table(25)
     assert Camel([my_types]).dump(table) == "!table;1\nsize: 25\n"
 
@@ -53,7 +53,7 @@ def test_docs_table_v2():
         def __repr__(self):
             return "<Table {self.height!r}x{self.width!r}>".format(self=self)
 
-    from camel import Camel, CamelRegistry
+    from camelx import Camel, CamelRegistry
     my_types = CamelRegistry()
 
     @my_types.dumper(Table, 'table', version=2)
@@ -96,7 +96,7 @@ def test_docs_deleted():
         def __init__(self, data):
             self.data = data
 
-    from camel import Camel, CamelRegistry
+    from camelx import Camel, CamelRegistry
     my_types = CamelRegistry()
 
     @my_types.loader('deleted-type', version=all)
@@ -116,7 +116,7 @@ def test_docs_table_any():
         def __repr__(self):
             return "<Table {self.height!r}x{self.width!r}>".format(self=self)
 
-    from camel import Camel, CamelRegistry
+    from camelx import Camel, CamelRegistry
     my_types = CamelRegistry()
 
     @my_types.loader('table', version=any)

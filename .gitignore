@@ -6,3 +6,10 @@ __pycache__/
 build/
 dist/
 docs/_build/
+
+venv
+dist
+build
+.eggs
+.pytest_cache
+*.DS_Store

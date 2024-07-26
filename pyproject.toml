@@ -1,3 +1,17 @@
+[project]
+name = "camelx"
+version = "0.0.1"
+authors = [
+  { name="Eevee (Lexy Munroe)", email="eevee.camel@veekun.com" },
+  { name="Abdelaziz Elrashed Elshaikh Mohamed", email="aeemh.sdn@gmail.com" },
+]
+description = "Python serialization for adults"
+readme = "README.md"
+
+[project.urls]
+Homepage = "https://github.com/vzool/camelx"
+Issues = "https://github.com/vzool/camelx/issues"
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"

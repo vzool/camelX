@@ -1,4 +1,4 @@
-This fork from "eevee/camel" aims to maintain and potentially enhance the library, the original project has been inactive for years.
+**This fork from "[eevee/camel](https://github.com/eevee/camel)" aims to maintain and potentially enhance the library, the original project has been inactive for years.**
 
 CamelX
 =====
@@ -6,9 +6,11 @@ CamelX
 CamelX is a library that lets you describe how to serialize your objects to
 YAML — and refuses to serialize them if you don't.
 
+If you are interested in contributing, please submit pull requests.
+
 Quick example:
 
-.. code-block:: python
+```python
 
     from camelx import Camel, CamelRegistry
 
@@ -36,7 +38,9 @@ Quick example:
 
     # !roll 3d6
     # ...
+```
 
 Docs: http://camel.readthedocs.org/en/latest/
 
 GitHub: https://github.com/eevee/camel
+

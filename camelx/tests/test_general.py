@@ -8,7 +8,7 @@ import datetime
 
 import pytest
 
-from camel import Camel, CamelRegistry, PYTHON_TYPES
+from camelx import Camel, CamelRegistry, PYTHON_TYPES
 
 
 # Round-trips for simple values of built-in types
