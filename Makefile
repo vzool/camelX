@@ -3,18 +3,25 @@
 init:
 	python3 -m venv venv
 
+.PHONY: clean
+# clean generated files
+clean:
+	rm -rf build
+	rm -rf dist
+	rm -rf *.egg-info
+	rm -rf .pytest_cache
 .PHONY: deps
 # deps development
 deps:
 	python3 -m pip install --upgrade pip
-	python3 -m pip install wheel
-	python3 -m pip install setuptools
-	python3 -m pip install twine
-	python3 -m pip install pyyaml
-	python3 -m pip install pytest==8.2.2
-	python3 -m pip install pytest-runner==6.0.1
+	python3 -m pip install --upgrade wheel
+	python3 -m pip install --upgrade setuptools
 	python3 -m pip install --upgrade twine
-	python3 -m pip install build
+	python3 -m pip install --upgrade pyyaml
+	python3 -m pip install --upgrade pytest==8.2.2
+	python3 -m pip install --upgrade pytest-runner==6.0.1
+	python3 -m pip install --upgrade twine
+	python3 -m pip install --upgrade build
 
 .PHONY: test
 # run tests
