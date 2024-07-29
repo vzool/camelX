@@ -1,12 +1,29 @@
 [project]
 name = "camelx"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Eevee (Lexy Munroe)", email="eevee.camel@veekun.com" },
+]
+maintainers = [
   { name="Abdelaziz Elrashed Elshaikh Mohamed", email="aeemh.sdn@gmail.com" },
 ]
 description = "Python serialization for adults"
 readme = "README.md"
+dependencies = [
+  "pyyaml",
+]
+classifiers=[
+    'Development Status :: 2 - Pre-Alpha',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: ISC License (ISCL)',
+    'Programming Language :: Python :: 2',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.2',
+    'Programming Language :: Python :: 3.3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+]
 
 [project.urls]
 Homepage = "https://github.com/vzool/camelx"

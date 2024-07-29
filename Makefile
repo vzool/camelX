@@ -3,6 +3,11 @@
 init:
 	python3 -m venv venv
 
+.PHONY: dev-build
+# dev-build the library
+dev-build:
+	python3 setup.py build_ext --inplace
+
 .PHONY: clean
 # clean generated files
 clean:
