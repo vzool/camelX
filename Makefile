@@ -10,6 +10,12 @@ clean:
 	rm -rf dist
 	rm -rf *.egg-info
 	rm -rf .pytest_cache
+
+.PHONY: benchmark
+# benchmark
+benchmark:
+	python3 camelx/benchmark.py > output.txt
+
 .PHONY: deps
 # deps development
 deps:
@@ -27,6 +33,22 @@ deps:
 # run tests
 test:
 	pytest --capture=no
+
+.PHONY: dev-build
+# dev-build the library
+dev-build:
+	python3 setup.py build_ext --inplace
+
+.PHONY: build
+# build the library
+build:
+	python3 setup.py build_ext --inplace
+	python3 setup.py bdist_wheel --plat-name=macosx_11_0_arm64 # macOS ARM64
+	python3 setup.py bdist_wheel --plat-name=macosx_10_9_x86_64 # macOS x86_64
+	python3 setup.py bdist_wheel --plat-name=win_arm64 # Windows ARM64
+	python3 setup.py bdist_wheel --plat-name=win_amd64 # Windows x86_64
+	python3 setup.py bdist_wheel --plat-name=manylinux_2_17_x86_64 # Linux x86_64
+	python3 setup.py bdist_wheel --plat-name=linux_armv7l # Linux ARM32
 
 .PHONY: deploy
 # deploy package

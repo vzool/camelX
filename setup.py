@@ -1,6 +1,12 @@
-from setuptools import find_packages, setup
+from setuptools import find_packages, setup, Extension
+from Cython.Build import cythonize
 from io import open
 
+extensions = [
+    Extension('camelx_cy', sources=[
+        'camelx/camelx_cy.pyx',
+    ]),
+]
 
 setup(
     name='camelx',
@@ -22,6 +28,7 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
+    ext_modules = cythonize(extensions),
     packages=find_packages(),
     install_requires=['pyyaml'],
     tests_require=['pytest'],

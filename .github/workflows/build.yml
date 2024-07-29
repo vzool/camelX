@@ -1,0 +1,53 @@
+name: Build and Release Wheels
+
+on:
+  push:
+    branches: [main]  # Trigger on pushes to the main branch
+
+jobs:
+  build_wheels:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - platform: linux
+            arch: x86_64
+          - platform: linux
+            arch: aarch64
+          - platform: macos
+            arch: x86_64
+          - platform: macos
+            arch: arm64
+          - platform: windows
+            arch: x86_64
+          - platform: windows
+            arch: arm64
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install cython cibuildwheel
+      - name: Build wheels
+        run: cibuildwheel --output-dir wheelhouse
+      - uses: actions/upload-artifact@v3
+        with:
+          name: wheels
+          path: wheelhouse
+
+  create_release:
+    needs: build_wheels
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: wheels
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            wheelhouse/*.whl
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
